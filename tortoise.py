@@ -17,6 +17,13 @@ def main():
         help="Increase output with filename and number of commands in file",
         action="store_true",
     )
+    parser.add_argument(
+        "-R",
+        "--renderer",
+        help="Choose language, you can choose english or dutch",
+        choices=["english", "dutch"],
+        )
+    
     args = parser.parse_args()
 
     with open(args.filename, encoding="utf-8") as tortoise:
@@ -25,7 +32,7 @@ def main():
     # Create a list of lists where each line of commands from the program are
     # in a list. Strip the new lines to exclude them as elements in these lists.
     program = [list(i.strip()) for i in program]
-    tortoise_interpreter.main_tortoise(program, args.filename, args.verbose)
+    tortoise_interpreter.main_tortoise(program, args.filename, args.verbose, args.renderer)
 
 
 if __name__ == "__main__":
